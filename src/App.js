@@ -1,20 +1,9 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { addPositions } from './store/positions/position-actions';
-import data from './mock/data.json';
-
 import './App.css';
-import { FilterPanel } from './components/FilterPanel';
-import { JobList } from './components/JobList';
+import { JobList } from './features/positions/JobList';
 import { TheHeader } from './components/TheHeader';
+import { FilterPanel } from './features/filter/FilterPanel';
 
 function App() {
-   const dispatch = useDispatch();
-
-   useEffect(() => {
-      dispatch(addPositions(data)); //eslint-disable-next-line
-   }, []);
-
    return (
       <div className="App">
          <TheHeader />

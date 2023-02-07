@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { clearFilter, removeFilter } from '../store/filters/filter-actions';
-import { selectFilters } from '../store/filters/filter-selectors';
-import { Badge } from '../UI/Badge';
-import { Card } from '../UI/Card';
-import { Stack } from '../UI/Stack';
+import { clearFilter, removeFilter } from '../../features/filter/filter-slice';
+import { Badge } from '../../UI/Badge';
+import { Card } from '../../UI/Card';
+import { Stack } from '../../UI/Stack';
+import { selectFilters } from './filter-slice';
 
 const FilterPanel = () => {
    const filters = useSelector(selectFilters);
@@ -16,8 +16,9 @@ const FilterPanel = () => {
       <Card className="filter-panel">
          <div className="filter-panel-wrapper">
             <Stack>
-               {filters.map((filter) => (
+               {filters.map((filter, id) => (
                   <Badge
+                     key={id}
                      variant="clearable"
                      onClear={() => dispatch(removeFilter(filter))}
                   >
@@ -25,7 +26,7 @@ const FilterPanel = () => {
                   </Badge>
                ))}
             </Stack>
-            <button className="link" onClick={() => dispatch(clearFilter)}>
+            <button className="link" onClick={() => dispatch(clearFilter())}>
                Clear
             </button>
          </div>
